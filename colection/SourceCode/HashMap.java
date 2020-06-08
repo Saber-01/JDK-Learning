@@ -589,7 +589,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                 if (t > threshold)                    //当table为null 时，threshold保存的是初始容量(未乘0.75)，所以用ft(而不是s)来比较。
                     threshold = tableSizeFor(t);         //如果超出了。就对其进行扩容。得到大于等于它的最小2 的整数次幂作为初始阈值(将在第一次put时计入容量中)。
             }
-            else if (s > threshold)        //如果table 不为空。键值对数量大于阈值。进行扩容。
+            else if (s > threshold)        //如果table 不为空。键值对数量大于阈值。进行扩容。用于putAll;
                 resize();
             for (Map.Entry<? extends K, ? extends V> e : m.entrySet()) {  //Iterator遍历 Map
                 K key = e.getKey();                 //得到key,
@@ -631,6 +631,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * possible that the map explicitly maps the key to {@code null}.
      * The {@link #containsKey containsKey} operation may be used to
      * distinguish these two cases.
+     * 返回指定 key 对应的 value，如果指定 key 不包含任何映射返回 null。
+     *
+     * 返回值为 null 并不一定是因为不包含指定 key 对应的映射，也有可能是
+     *  map 允许 value 值为 null。containsKey 方法可以用来区分这两种情况。
+     *   /
      *
      * @see #put(Object, Object)
      */
@@ -750,11 +755,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Initializes or doubles table size.  If null, allocates in
-     * accord with initial capacity target held in field threshold.
-     * Otherwise, because we are using power-of-two expansion, the
-     * elements from each bin must either stay at same index, or move
-     * with a power of two offset in the new table.
+     * 初始化 table size 或者对 table size 加倍。如果 table 为 null，对 table
+     *  进行初始化。如果进行扩容操作，由于每次扩容都是翻倍，每个桶里的
+     * 元素要么待在原来的索引里面，要么在新的 table 里偏移 2 的幂个位置。
      *
      * @return the table
      */
@@ -866,7 +869,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * Copies all of the mappings from the specified map to this map.
      * These mappings will replace any mappings that this map had for
      * any of the keys currently in the specified map.
-     *
+     *将指定 map 的所有映射复制到此 map 中。这些映射将替代此 map 中
+     * 已经存在的 key 对应的映射。
      * @param m mappings to be stored in this map
      * @throws NullPointerException if the specified map is null
      */
@@ -897,7 +901,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * @param value the value to match if matchValue, else ignored   //可以传入key对应的value，或null表示不传入value。
      * @param matchValue if true only remove if value is equal   //如果为true，表示只有和传入的值相同，才删除。
      * @param movable if false do not move other nodes while removing 如果为false，在删除时不移动其他节点。
-     * @return the node, or null if none       //返回删除的节点，如果没找到删除的点，返回null
+     * @return the node, or nul l if none       //返回删除的节点，如果没找到删除的点，返回null
      */
     //
     final Node<K,V> removeNode(int hash, Object key, Object value,
@@ -1159,7 +1163,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     // Overrides of JDK8 Map extension methods
-   //以下内容是对Map方法中的一个重写。并不是hsahmap的常用方法，具体可以在学习Map源码的时候了解。
+       //以下内容是对Map方法中的一个重写。并不是hsahmap的常用方法，具体可以在学习Map源码的时候了解。
     @Override
     public V getOrDefault(Object key, V defaultValue) {
         Node<K,V> e;
