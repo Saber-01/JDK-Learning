@@ -621,7 +621,7 @@ public class ArrayList<E> extends AbstractList<E>
 
     /**
      * Removes the first occurrence of the specified element from this list,
-     * if it is present.  If the list does not contain the element, it is
+     * if it is present.  If the list does not contai the element, it is
      * unchanged.  More formally, removes the element with the lowest index
      * <tt>i</tt> such that
      * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>
