@@ -244,6 +244,7 @@ public class LinkedList<E>
     /**
      * Unlinks non-null node x.
      * 删除一个非空节点 x，并返回删除节点的值，
+     * 考虑了 节点是 表头节点/表尾节点的情况。
      */
     E unlink(Node<E> x) {
         // assert x != null;   //确定节点不为null
