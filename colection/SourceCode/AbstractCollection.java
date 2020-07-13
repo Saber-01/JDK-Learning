@@ -231,7 +231,7 @@ public abstract class AbstractCollection<E> implements Collection<E> {
                 } else {          //如果发现a.length>=i,即目标数组可以容纳下实际集合中元素。则不要新建数组，还是使用数组a。
                     System.arraycopy(r, 0, a, 0, i);  //因为元素存在了r中，需要从r中将元素引用复制到a中，复制个数为i。
                     if (a.length > i) {               //如果目标数组a的长度比集合实际个数要大，那么数组a填满集合元素后，还会有剩余位置
-                        a[i] = null;            //a中剩余位置都填上null。
+                        a[i] = null;            //a中紧跟着最后元素的位置i填上null。
                     }
                 }
                 return a;
