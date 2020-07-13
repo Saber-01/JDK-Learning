@@ -609,7 +609,7 @@ public class ArrayList<E> extends AbstractList<E>
         modCount++;             //列表结构修改次数加1
         E oldValue = elementData(index);            //先取出索引位置的旧值，用于返回
 
-        int numMoved = size - index - 1;     //计算需要向左移动的位数。
+        int numMoved = size - index - 1;     //计算需要向左移动的数量。
         if (numMoved > 0)      //如果删除的不是最后一个元素。
             //调用System.arraycopy函数从将数组index+1开始的numMoved个元素移动到从index开始，即index后面的值全部向左移动一位
             System.arraycopy(elementData, index+1, elementData, index,
