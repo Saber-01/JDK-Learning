@@ -255,7 +255,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * sometimes (currently only upon Iterator.remove), the root might
      * be elsewhere, but can be recovered following parent links
      * (method TreeNode.root()).
-     *（树容器的节点一般是第一个节点，但是有些时候（目前仅可能Iterator.remove造成）
+     *（树容器的根节点一般是第一个节点，但是有些时候（目前仅可能Iterator.remove造成）
      * root的节点也许是其他的，但是它们可以通过指向父节点的链接被恢复）
      *
      * All applicable internal methods accept a hash code as an
@@ -421,9 +421,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                 return c;
             if ((ts = c.getGenericInterfaces()) != null) {  //如果c不是字符串类，则先获取c类别实现的所有接口列表
                 for (int i = 0; i < ts.length; ++i) {    //遍历接口类
-                    if (((t = ts[i]) instanceof ParameterizedType) &&    //如果是泛型接口t，
-                            ((p = (ParameterizedType)t).getRawType() == //获得泛型接口t的类型p。
-                                    Comparable.class) &&  //如果泛型接口t的类型p是Comparable，
+                    if (((t = ts[i]) instanceof ParameterizedType) &&    //如果是使用了泛型的接口t，
+                            ((p = (ParameterizedType)t).getRawType() == //获得使用了泛型的接口t的类型p。
+                                    Comparable.class) &&  //如果使用了泛型的接口t的类型p是Comparable，
                             (as = p.getActualTypeArguments()) != null &&   //获取类型p(Comparable)的泛型列表，如果这个列表不为空，
                             as.length == 1 && as[0] == c) // type arg is c    //且只有1个泛型，这个泛型为c.
                         return c;                   //则说明c类型实现了接口Comparable<c> ,则返回c
