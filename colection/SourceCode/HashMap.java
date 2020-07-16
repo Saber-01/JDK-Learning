@@ -1062,7 +1062,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * 不支持add和addall操作。
      * @return a view of the values contained in this map
      */
-    public Collection<V> values() {      //内部方法value（），返回hashmap中值的结合视图。
+    public Collection<V> values() {      //内部方法value（），返回hashmap中值的集合视图。
         Collection<V> vs = values;
         if (vs == null) {
             vs = new Values();
