@@ -775,6 +775,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         public void remove() {
             if (lastRet < 0)      //如果迭代器才发生结构修改的操作或者初始还未开始遍历，lastRet就为-1
                 throw new IllegalStateException();
+            //delete返回true，说明移动的是靠近尾部的元素。则需要将cursor往左移动一位。避免丢失元素
             if (delete(lastRet)) { // if left-shifted, undo increment in next() 如果左移，则撤消next（）中的增量
                 cursor = (cursor - 1) & (elements.length - 1);  //删除了一个，底层数组会左移，所以cursor要自减，
                 fence = tail;        //更新队列尾部、
@@ -827,9 +828,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         public void remove() {
             if (lastRet < 0)
                 throw new IllegalStateException();
-            if (!delete(lastRet)) {
-                cursor = (cursor + 1) & (elements.length - 1);
-                fence = head;
+            if (!delete(lastRet)) {   //如果移动的是靠近头部的元素。即右移
+                cursor = (cursor + 1) & (elements.length - 1); //那么倒序的话，需要将cursor往右后退一个，即+1.
+                fence = head;    //更新头部
             }
             lastRet = -1;
         }
