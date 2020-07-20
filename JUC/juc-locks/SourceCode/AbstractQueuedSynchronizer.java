@@ -2183,7 +2183,7 @@ public abstract class AbstractQueuedSynchronizer
                 throw new IllegalMonitorStateException();
             Node first = firstWaiter;
             if (first != null)
-                (first);     //唤醒等待队列第一个线程，让它转移到同步队列中
+                doSignal(first);     //唤醒等待队列第一个线程，让它转移到同步队列中
         }
 
         /**
