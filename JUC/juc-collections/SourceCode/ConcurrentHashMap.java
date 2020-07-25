@@ -350,7 +350,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
      * sizeCtl = -1 表示 table 正在初始化
      * sizeCtl = 0 默认值
      * sizeCtl > 0 下次扩容的阈值
-     * sizeCtl = (resizeStamp << 16) + (1 + nThreads)，表示正在进行扩容，高位存储扩容邮戳，低位存储扩容线程数加 1；
+     * sizeCtl <0,则其= (resizeStamp << 16) + (1 + nThreads)，表示正在进行扩容，高位存储扩容邮戳，低位存储扩容线程数加 1；
      * 初始化数组或扩容完成后，将 sizeCtl 的值设为 0.75 * n
      */
     private transient volatile int sizeCtl;
@@ -494,7 +494,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
             }
             // 如果头结点的 hash 小于 0，说明正在扩容，或者该位置是红黑树
             else if (eh < 0)
-                // ForwardingNode.find(int h, Object k)，TreeBin.find(int h, Object k)，Node.find(int h, Object k)
+                // ForwardingNode.find(int h, Object k)，TreeBin.find(int h, Object k)，
                 return (p = e.find(h, key)) != null ? p.val : null;
             // 遍历链表，找到就返回。
             while ((e = e.next) != null) {
@@ -1844,7 +1844,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                 //所以只要扩容前的n是相同的，那么它得到的rs标记也是相同的，说明为同一次扩容。
                 int rs = resizeStamp(n);
                 // 已经有线程在转移节点
-                if (sc < 0) {  //进入循环后，有线程正在进行扩容操作，已经将sc变为负数。
+                if (sc < 0) {  //该循环不会进入此if.
                     Node<K,V>[] nt;
                     // 判断当前线程是否要加入扩容
                     // 1. 根据生成戳判断是否是同一个扩容操作，高 ESIZE_STAMP_BITS
