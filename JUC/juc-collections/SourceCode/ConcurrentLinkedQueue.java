@@ -284,8 +284,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
                     updateHead(h, p);
                     return null;
                 }
-                // 如果此时头节点被更新了，或者如果节点执行过p=q，即至少自旋一次，
-                // 但是还是在CAS中失败了，说明有线程成功设置了头节点。重新开始外层自旋，即会更新h和p指向新的头节点。
+                // 如果此时头节点被更新了，说明有线程成功设置了头节点。重新开始外层自旋，即会更新h和p指向新的头节点。
                 else if (p == q)
                     continue restartFromHead;
 
@@ -309,7 +308,6 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
                     return item;
                 }
                 // 如果刚好碰到head被重新设置，即item为null，next指向自身。
-                //又或者执行过一次p=q。
                 else if (p == q)
                     continue restartFromHead;
                  //如果item为null，则继续往后
@@ -339,7 +337,6 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
                     return hasItem ? p : null;
                 }
                 // 头结点已经改变，从新的头结点开始查找
-                //又或者执行过一次p=q
                 else if (p == q)
                     continue restartFromHead;
                     // 否则往后查找
