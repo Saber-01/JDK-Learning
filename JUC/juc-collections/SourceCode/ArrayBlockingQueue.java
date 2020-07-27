@@ -359,7 +359,7 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
         final ReentrantLock lock = this.lock;   //获得锁
         lock.lockInterruptibly();   //上锁，可中断。
         try {
-            // 在指定时间内自旋。
+            //内部调用的awaitNanos，限时等待。
             while (count == items.length) {
                 // 没有剩余时间了
                 if (nanos <= 0)
