@@ -2,7 +2,7 @@
 
 ### List, Stack and Queue
 
-* [ArrayList]( [https://github.com/Saber-01/JDK-Learning/blob/master/colection/LearningNotes/ArrayList%20%E5%8E%9F%E7%90%86%EF%BC%8C%E9%80%9A%E8%BF%87%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3.md](https://github.com/Saber-01/JDK-Learning/blob/master/colection/LearningNotes/ArrayList 原理，通过源码学习进行深入了解.md) )| [LinkedList]( [https://github.com/Saber-01/JDK-Learning/blob/master/colection/LearningNotes/LinkedList%E5%8E%9F%E7%90%86%EF%BC%8C%20%E9%80%9A%E8%BF%87%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3.md](https://github.com/Saber-01/JDK-Learning/blob/master/colection/LearningNotes/LinkedList原理， 通过源码学习进行深入了解.md) )
+* [ArrayList](https://github.com/Saber-01/JDK-Learning/blob/master/colection/LearningNotes/ArrayList%20%E5%8E%9F%E7%90%86%EF%BC%8C%E9%80%9A%E8%BF%87%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3.md)
 - ArrayList 是基于数组实现的线性表，没有最大容量限制（其实有，是 Integer.MAX_VALUE），可扩容。LinkedList 是基于节点实现的线性表（双向链表），没有最大容量限制。
   - LinkedList 还实现了 Deque 接口，可以作为单向和双向队列实例。
   
