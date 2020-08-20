@@ -1,4 +1,4 @@
-## Collections in java.util
+## 集合类
 
 ### List, Stack and Queue
 
@@ -37,8 +37,21 @@
 
 &nbsp;
 
-## Concurrency Tools in java.util.concurrent
+## 并发多线程类
 
+### Thread Pool
+
+* [FutureTask](https://github.com/Saber-01/JDK-Learning/blob/master/JUC/juc-executors/SourceCode/FutureTask.java)
+
+- 实现了 Runnable 和 Future 接口，是可取消的异步运算，支持的任务类型是 Callable。可以通过 get 方法获取结果，如果任务尚未完成，获取结果的线程将会被阻塞。
+  - FutureTask 可以通过 submit 方法提交到线程池中执行。
+
+* [ThreadPoolExecutor](https://github.com/Saber-01/JDK-Learning/blob/master/JUC/juc-executors/LearningNotes/JUC%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%20ThreadPoolExecutor%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0.md) | ScheduledThreadPoolExecutor
+
+- 线程池用来控制一系列线程的创建、调度、监控和销毁等。
+  - ThreadPoolExecutor 实现了 ExecutorService 接口，是创建线程池的核心类，可指定核心线程数，最大线程数，阻塞队列，拒绝策略等参数。工厂类 Executors 中一大半的常用线程池都是通过 ThreadPoolExecutor 创建。
+  - ScheduledThreadPoolExecutor 是线程池的一种，用于延迟或周期性执行提交的任务。
+  
 ### ThreadLocal
 
 * [ThreadLocal](https://github.com/Saber-01/JDK-Learning/blob/master/JUC/JUC%20%20ThreadLocal%E5%8E%9F%E7%90%86%EF%BC%8C%E9%80%9A%E8%BF%87%E6%BA%90%E7%A0%81%E8%BF%9B%E8%A1%8C%E5%AD%A6%E4%B9%A0%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3.md)
@@ -102,15 +115,4 @@
 
 - 无界延时阻塞队列。使用显式锁保证线程安全。使用优先队列对延迟时间排序。只有当队列头部元素延迟时间到期，才允许被取出，否则线程一直等待。
 
-### Thread Pool
 
-* [FutureTask](https://github.com/Saber-01/JDK-Learning/blob/master/JUC/juc-executors/SourceCode/FutureTask.java)
-
-- 实现了 Runnable 和 Future 接口，是可取消的异步运算，支持的任务类型是 Callable。可以通过 get 方法获取结果，如果任务尚未完成，获取结果的线程将会被阻塞。
-  - FutureTask 可以通过 submit 方法提交到线程池中执行。
-
-* [ThreadPoolExecutor](https://github.com/Saber-01/JDK-Learning/blob/master/JUC/juc-executors/LearningNotes/JUC%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%20ThreadPoolExecutor%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0.md) | ScheduledThreadPoolExecutor
-
-- 线程池用来控制一系列线程的创建、调度、监控和销毁等。
-  - ThreadPoolExecutor 实现了 ExecutorService 接口，是创建线程池的核心类，可指定核心线程数，最大线程数，阻塞队列，拒绝策略等参数。工厂类 Executors 中一大半的常用线程池都是通过 ThreadPoolExecutor 创建。
-  - ScheduledThreadPoolExecutor 是线程池的一种，用于延迟或周期性执行提交的任务。
